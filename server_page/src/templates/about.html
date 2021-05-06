@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block about_context %}
+
+<div class="row">
+    <div class="leftcolumn">
+        <div class="card">
+            <h2>About</h2>
+            <p>
+                {{ server_name }}, 
+                {{ server_purpose }}
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

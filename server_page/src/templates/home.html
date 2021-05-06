@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block home_context %}
+
+<!-- META HTTP-EQUIV="Refresh" CONTENT=20 -->
+
+
+
+
+<div class="row">
+    <div class="leftcolumn">
+        <div class="card">
+        <h2>Server Control</h2>
+                
+        <h5 id="momenttd"></h5>
+        <script type="text/javascript">
+            var Now = moment().format('MMMM Do YYYY, h:mm:ss a');
+            var x = document.getElementById('momenttd');
+            x.innerHTML = Now;      
+        </script>
+            
+        
+        <p>Server control operations</p>
+        
+  
+        <button_init    onclick="call_counter('start_srvr', 1)"   type="submit" value="init_server"     name="init_server"    class="button_init"     style="vertical-align:left"><span>Initialize </span></button_init>
+        <button_restart onclick="call_counter('restart_srvr', 1)" type="submit" value="restart_server"  name="restart_server" class="button_restart"  style="vertical-align:middle"><span>Restart </span></button_restart>
+        <button_stop    onclick="call_counter('stop_srvr', 1)"    type="submit" value="button_stop"     name="stop_server"    class="button_stop"     style="vertical-align:right"><span>Stop </span></button_stop> 
+
+        <hr>
+  
+        <p>Utilize this space to provide the necessary actions and information to initialize, stop and/or restart the Syncware Server</p>
+          
+        <br>
+
+        <p>
+            <b>Warning:</b> Restarting the server might result in loss of data.
+        </p>
+        </br>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Server Nodes</h2>
+
+            
+            <p>Address Space Information</p>
+            <p>Consider the Address Space as the universe where all the data will be residing and interacting. </p>
+
+            <hr>
+            <br>
+
+
+            <div id="jstree_opc_div">
+
+                <ul>
+                    <li>Root node 1</li>
+                    <li>Root node 2</li>
+                    <li>Root node 3</li>
+                    <li>Root node 4</li>
+                    <li>Root node 5</li>
+                    <li>Root node 6</li>
+                    <li>Root node 7</li>
+                    <li>Root node 8</li>
+                </ul>
+            
+            </div>
+
+        </div>
+            
+
+            
+
+
+        
+
+    
+    </div>
+
+</div>
+
+
+
+{% endblock %}

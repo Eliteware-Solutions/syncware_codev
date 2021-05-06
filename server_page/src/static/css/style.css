@@ -1,0 +1,400 @@
+@charset "UTF-8";
+*{
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial;
+    padding: 10px;
+    background: #1a1717;
+    /* Previous used #f1f1f1*/
+}
+
+/* Header/Blog Title */
+.header {
+    padding: 5px;
+    text-align: center;
+    background: linear-gradient(to right, rgb(48, 48, 48) , rgb(31, 31, 51));
+}
+
+.header h1 {
+    font-size: 50px;
+    color: rgb(202, 199, 199);
+}
+
+.header p {
+    color: rgb(230, 227, 227);
+}
+
+/* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+    /* #333 */
+}
+
+/* Style the topnav links */
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    /* #ddd */
+    color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+    float: left;
+    width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+    float: right;
+    width: 25%;
+    background-color: #1a1717;
+    /* Previous used #f1f1f1*/
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* Fake image */
+.fakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+    background: linear-gradient(to right, rgb(53, 53, 53) , rgba(100, 100, 100, 0.884));
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.card h2{
+    color: rgb(202, 199, 199);
+}
+
+.card h3{
+    color: rgb(202, 199, 199);
+}
+
+.card h5{
+    color: rgb(202, 199, 199);
+}
+
+.card p{
+    color: rgb(202, 199, 199);
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Footer */
+.footer {
+    padding: 5px;
+    text-align: center;
+    background: linear-gradient(to right, rgb(177, 177, 177) , rgba(100, 100, 100, 0.884));
+    margin-top: 10px;
+}
+
+.footer h2 {
+    color: rgb(59, 59, 59);
+    text-align: center;
+    align-items: center;
+}
+
+
+input[type=submit] {
+    display: ruby;
+    border-radius: 4px;
+    background-color: rgb(31, 31, 51);
+    border: none;
+    color: rgb(199, 199, 199);
+    text-align: center;
+    font-size: 28px;
+    padding: 10px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 50px;
+    align-items: center;
+}
+
+
+input[type=submit] span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+input[type=submit] span:after {
+    content: '\E083';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+input[type=submit]:hover span {
+    padding-right: 25px;
+}
+
+input[type=submit]:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+input[type=submit]:after {
+    content: "";
+    background: #9096ee;
+    display: block;
+    position: relative;
+    padding-top: 20%;
+    padding-left: 20%;
+    margin-left: 0px!important;
+    margin-top: -20%;
+    opacity: 0;
+    transition: all 5s
+}
+
+input[type=submit]:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+
+.button_init {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: rgb(31, 31, 51);
+    border: none;
+    color: rgb(199, 199, 199);
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 50px;
+}
+
+.button_init.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.button_init span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button_init span:after {
+    content: '\2714';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button_init:hover span {
+    padding-right: 25px;
+}
+
+.button_init:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+
+.button_init:after {
+    content: "";
+    background: #9096ee;
+    display: block;
+    position: relative;
+    padding-top: 20%;
+    padding-left: 20%;
+    margin-left: 0px!important;
+    margin-top: -20%;
+    opacity: 0;
+    transition: all 5s
+}
+
+.button_init:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+
+
+.button_stop {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: rgb(31, 31, 51);
+    border: none;
+    color: rgb(199, 199, 199);
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 50px;
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.button_stop span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button_stop span:after {
+    content: '\2718';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button_stop:hover span {
+    padding-right: 25px;
+}
+
+.button_stop:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.button_stop:after {
+    content: "";
+    background: #9096ee;
+    display: block;
+    position: relative;
+    padding-top: 20%;
+    padding-left: 20%;
+    margin-left: 0px!important;
+    margin-top: -20%;
+    opacity: 0;
+    transition: all 5s
+}
+
+.button_stop:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+
+.button_restart {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: rgb(31, 31, 51);
+    border: none;
+    color: rgb(199, 199, 199);
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 50px;
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.button_restart span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button_restart span:after {
+    content: '\21BA';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button_restart:hover span {
+    padding-right: 25px;
+}
+
+.button_restart:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.button_restart:after {
+    content: "";
+    background: #9096ee;
+    display: block;
+    position: relative;
+    padding-top: 20%;
+    padding-left: 20%;
+    margin-left: 0px!important;
+    margin-top: -20%;
+    opacity: 0;
+    transition: all 10s
+}
+
+.button_restart:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+    }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+    .topnav a {
+    float: none;
+    width: 100%;
+    }
+}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block login_context %}
+
+<div class="row">
+    <div class="leftcolumn">
+        <div class="card">
+
+        <hr>
+        
+        <h2> Login to Syncware Control Server </h2>
+        <br>
+        
+        <form class="site-form" action="/accounts/login/" method="post">
+            {% csrf_token %}
+            {{form}}    
+
+             
+
+            <input  type="submit" value="Login" >    
+        </form>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

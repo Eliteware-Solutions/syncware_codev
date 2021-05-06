@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contact_context %}
+
+<div class="row">
+    <div class="leftcolumn">
+        <div class="card">
+
+        <h2>Contact Us</h2>
+        <p>Feel free to approach these folks: </p>
+        <br>
+
+        <ul>
+            {% for contact in Contacts %}
+            <li><p>
+                {{ forloop.counter }} - {{ contact.Maintainer.0 }}
+                </p>
+                    <p>{{ contact.Maintainer.1 }}></p>
+                    <p>{{ contact.Maintainer.2 }}</p>
+                    <p>{{ contact.Maintainer.3 }}</p>
+                </br>
+                <br></br>
+            </li>
+            {% endfor %}
+        </ul>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

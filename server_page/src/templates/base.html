@@ -1,0 +1,143 @@
+{% load static%}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <!-- Meta Files -->
+  <meta charset="utf-8">
+  
+  <!-- CSS Styles -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'jstree/dist/themes/default/style.css' %}" />
+
+  <!-- include required js libraries -->
+  <!-- script src="https://momentjs.com/downloads/moment.js"> </script -->
+  <script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.js"> </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="{% static 'jstree/dist/jstree.min.js' %}"> </script>
+
+  
+  <!-- Our own app to see OPC UA trees -->
+  <script src="{% static 'js/opc_tree_viewer.js' %}"></script>
+
+  
+  <script>
+    function call_counter(url, pk) {
+      //window.open(url); 
+
+      $.get(url + '/', function (data) {
+        alert("Request sent!", url);
+      });
+    }
+  </script>
+
+  <!-- now the actual js code to show time. Taken from https://stackoverflow.com/questions/39047949/django-update-time-variable-in-template -->
+  <script>
+    function updateTime() {
+      $('.time-container').html(moment().format('h:mm:ss'));
+    };
+
+    updateTime();
+
+    setInterval(function () {
+      updateTime();
+    }, 1000);
+  </script>
+
+</head>
+
+
+
+<body>
+
+
+  <div class="header">
+    <h1>Syncware Server Control</h1>
+    <p>The server control panel</p>
+  </div>
+
+
+<!-- Logout button - Need to beautify -->
+  <nav>
+    <ul>
+      <li>
+        <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+          {% csrf_token %}
+          <button style="float:right" type="submit">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="topnav">
+    <a href="/">Login Page</a>
+    <a href="../../home/">Home</a>
+    <a href="../../logic/">Process Logic</a>    
+    <a href="../../contact/">Contact</a>
+    <a href="../../about/">About Syncware</a>
+    <a href="../../help/" style="float:right">Help</a>
+  </div>
+
+ 
+
+
+  <div class="rightcolumn">
+
+
+    {% block status_context %}
+
+    {% endblock %}
+
+
+    <div class="card">
+      <h3>How to ...</h3>
+      <div class="fakeimg">Configure your network</div>
+      <div class="fakeimg">Execute a plug-in</div>
+      <div class="fakeimg">Transmit information</div>
+    </div>
+
+    <div class="card">
+      <h3>Follow Us</h3>
+      <p>Twitter Account</p>
+    </div>
+
+  </div>
+
+
+  <!-- Include blocks here if there is a need to visualize them in the left column of the first row -->
+
+  {% block login_context %}
+
+  {% endblock %}
+  
+
+  {% block home_context %}
+
+  {% endblock %}
+
+  {% block logic_context %}
+
+  {% endblock %}
+
+  {% block about_context %}
+
+  {% endblock %}
+
+  {% block contact_context %}
+
+  {% endblock %}
+
+
+
+
+  <div class="footer">
+    <h2 align="center"> Syncware 2021 - Singapore</h2>
+  </div>
+
+</body>
+
+
+
+</html>
