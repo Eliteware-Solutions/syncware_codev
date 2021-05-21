@@ -22,11 +22,19 @@ from page.views import landing_view, home_view, logic_view, contact_view, about_
 from frontend_b.views import index, strt_srv_view, rstrt_srv_view, stp_srv_view
 # from sw_bridge.views import mock
 
+from django.contrib.auth import views as auth_views
+from authen import views
+
 app_name = 'page'
 
 
 urlpatterns = [
-    path('', index),
+    #path('', views.home, name='home'),
+    path('', auth_views.LoginView.as_view(template_name='auth/login.html'), name='login'),
+    path('login/', auth_views.LoginView.as_view(template_name='auth/login.html')),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('signup/', views.signup, name='signup'),
+    #path('', index),
     path('accounts/', include('accounts.urls')),
     path('home/', home_view, name='home'),
     path('logic/', logic_view, name='logic'),
