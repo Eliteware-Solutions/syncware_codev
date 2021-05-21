@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 
-from server_core import sw_server_platform
+#from server_core import sw_server_platform
 
 # server_obj = sw_server_platform.SyncwareServer()
 

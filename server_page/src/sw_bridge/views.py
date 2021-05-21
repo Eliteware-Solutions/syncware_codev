@@ -6,12 +6,12 @@ from sw_bridge.serializers import SyncwareSerializer, StartServerSerializer, Sto
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from server_core import sw_server_platfor_api
+#from server_core import sw_server_platfor_api
 import argparse
 
 parser = argparse.ArgumentParser()
 
-server_obj = sw_server_platfor_api.SyncwareServer()
+#server_obj = sw_server_platfor_api.SyncwareServer()
 
 
 # Create your views here.

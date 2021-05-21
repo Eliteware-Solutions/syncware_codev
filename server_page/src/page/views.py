@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Posts
 
-from server_core import sw_server_platform
+#from server_core import sw_server_platform
 
 # server_obj = sw_server_platform.SyncwareServer()
 
