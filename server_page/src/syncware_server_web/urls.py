@@ -26,7 +26,7 @@ app_name = 'page'
 
 
 urlpatterns = [
-    path('', index),
+    path('', include('frontend_b.urls')),
     path('accounts/', include('accounts.urls')),
     path('home/', home_view, name='home'),
     path('logic/', logic_view, name='logic'),

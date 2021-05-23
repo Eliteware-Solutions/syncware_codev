@@ -1,62 +1,63 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import Container from '@material-ui/core/Container';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Chart from '../Charts/Charts';
-import Link from '@material-ui/core/Link';
-import Box from '@material-ui/core/Box';
+import React from "react";
+import clsx from "clsx";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import List from "@material-ui/core/List";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import Badge from "@material-ui/core/Badge";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import Container from "@material-ui/core/Container";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Chart from "../Charts/Charts";
+import Link from "@material-ui/core/Link";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
 
-import { ShowItems } from '../MenuList/ShowItems';
+import { ShowItems } from "../MenuList/ShowItems";
 
-import { Dashboard } from '../Dashboard/Dashboard';
-import { SYNCwareRegister } from '../Warehouse/Register';
-import { Report } from '../Reports/Report';
-import { Connectivity } from '../Connectivity/Connectivity';
-import { Billing } from '../Billings/Billing';
-import { Settings } from '../Settings/Setting';
-import { Help } from '../Help/Help';
-import { About } from '../About/About';
-import { setRef } from '@material-ui/core';
+import { Dashboard } from "../Dashboard/Dashboard";
+import { SYNCwareRegister } from "../Warehouse/Register";
+import { Report } from "../Reports/Report";
+import { Connectivity } from "../Connectivity/Connectivity";
+import { Billing } from "../Billings/Billing";
+import { Settings } from "../Settings/Setting";
+import { Help } from "../Help/Help";
+import { About } from "../About/About";
+import { setRef } from "@material-ui/core";
+import { Users } from "../Users/Users";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://www.syncware.ai/">
         SYNCware
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
-
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
   contentView: {
     flexGrow: 1,
@@ -71,15 +72,15 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    padding: "0 8px",
     ...theme.mixins.toolbar,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
@@ -87,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -96,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 36,
   },
   hide: {
-    display: 'none',
+    display: "none",
   },
   title: {
     flexGrow: 1,
@@ -108,10 +109,10 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(7),
   },
   drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
+    position: "relative",
+    whiteSpace: "nowrap",
     width: drawerWidth,
-    transition: theme.transitions.create('width', {
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -119,69 +120,68 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    whiteSpace: 'nowrap',
+    whiteSpace: "nowrap",
   },
   drawerOpen: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
+    position: "relative",
+    whiteSpace: "nowrap",
     width: drawerWidth,
-    transition: theme.transitions.create('width', {
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   drawerClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
+    overflowX: "hidden",
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     width: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9) + 1,
     },
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    height: '100vh',
-    overflow: 'auto',
-    flexWrap: 'wrap',
-    
+    height: "100vh",
+    overflow: "auto",
+    flexWrap: "wrap",
   },
-  container: { 
+  container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-
   },
   paper: {
     padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column",
   },
   fixedHeight: {
     height: 260,
   },
+  NotificationsIcon: {
+    marginRight: 10,
+  },
 }));
 
-function callbackFunction (childData) {
-  setState({message: childData});
-  
+function callbackFunction(childData) {
+  setState({ message: childData });
 }
 
 export default function MiniDrawer(menuChosen) {
-
-  const webPages = 
-  [
-    'dashboard', 
-    'new_project', 
-    'reports', 
-    'integrations', 
-    'billings', 
-    'settings', 
-    'help', 
-    'about'
+  const webPages = [
+    "dashboard",
+    "new_project",
+    "reports",
+    "integrations",
+    "billings",
+    "users",
+    "settings",
+    "help",
+    "about",
   ];
 
   const currentPage = webPages[0]; // Start at dashboard
@@ -190,9 +190,9 @@ export default function MiniDrawer(menuChosen) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const [valueItemMenu, setMenuValue] = React.useState(0); 
+  const [valueItemMenu, setMenuValue] = React.useState(0);
 
-  const handleClickMenu = event => setSelectedIndex(event.target.value);
+  const handleClickMenu = (event) => setSelectedIndex(event.target.value);
 
   function handleChange(newValue) {
     setMenuValue(newValue);
@@ -209,33 +209,35 @@ export default function MiniDrawer(menuChosen) {
 
   const renderTabs = () => {
     if (valueItemMenu == 0) {
-      return <Dashboard />
-    } 
+      return <Dashboard />;
+    }
     if (valueItemMenu == 1) {
-      return <SYNCwareRegister />
+      return <SYNCwareRegister />;
     }
     if (valueItemMenu == 2) {
-      return <Report />
+      return <Report />;
     }
     if (valueItemMenu == 3) {
-      return <Connectivity />
+      return <Connectivity />;
     }
     if (valueItemMenu == 4) {
-      return <Billing />
+      return <Billing />;
     }
     if (valueItemMenu == 5) {
-      return <Settings />
+      return <Users />;
     }
     if (valueItemMenu == 6) {
-      return <Help />
+      return <Settings />;
     }
     if (valueItemMenu == 7) {
-      return <About />
-    }    
-    else {
-      return <h1>404 Not Found</h1>
+      return <Help />;
     }
-  }
+    if (valueItemMenu == 8) {
+      return <About />;
+    } else {
+      return <h1>404 Not Found</h1>;
+    }
+  };
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -260,14 +262,30 @@ export default function MiniDrawer(menuChosen) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            className={classes.title}
+          >
             SYNCware
           </Typography>
-          <IconButton  color="inherit">
+          <IconButton color="inherit" className={classes.NotificationsIcon}>
             <Badge badgeContent={1} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
+          <Link href="/" style={{ textDecoration: "none" }}>
+            <Button
+              color="secondary"
+              fullWidth
+              type="submit"
+              variant="contained"
+            >
+              Logout
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -295,23 +313,18 @@ export default function MiniDrawer(menuChosen) {
         {/* <List>{mainListItems}</List>
         <Divider />
         <List>{secondaryListItems}</List> */}
-        <ShowItems value={valueItemMenu} onChange={handleChange}/>
-        
+        <ShowItems value={valueItemMenu} onChange={handleChange} />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-          
-        
 
         {/* Call the renderTabs function to update based on clicks
         Information coming from the ShowItems Child */}
         {renderTabs()}
-          
-        
 
-          <Box pt={4}>
-            <Copyright />
-          </Box>
+        <Box pt={4}>
+          <Copyright />
+        </Box>
       </main>
     </div>
   );
