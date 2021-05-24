@@ -38,7 +38,7 @@ import { Settings } from "../Settings/Setting";
 import { Help } from "../Help/Help";
 import { About } from "../About/About";
 import { setRef } from "@material-ui/core";
-import { Users } from "../Users/Users";
+import Users from "../Users/Users";
 
 function Copyright() {
   return (

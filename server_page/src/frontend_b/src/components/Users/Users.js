@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -14,6 +14,12 @@ import TableRow from "@material-ui/core/TableRow";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -122,28 +128,100 @@ const useStyles = makeStyles((theme) => ({
   },
   PersonAddIcon: {
     fontSize: 30,
+    cursor: "pointer",
+  },
+  modal: {
+    display: "flex",
+    padding: theme.spacing(1),
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  paper2: {
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
   },
 }));
 
-function createData(username, usertype, active, action) {
-  return { username, usertype, active, action };
-}
-
-const rows = [
-  createData("John", "Admin", "online", 0),
-  createData("Robert", "Manager", "online", 0),
-  createData("Client", "Admin", "online", 0),
-  createData("Ervin Howell", "Manager", "online", 0),
-  createData("Patricia Lebsack", "Admin", "online", 0),
-];
-
-export function Users() {
+function Users() {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  function createData(username, usertype, active, action) {
+    return { username, usertype, active, action };
+  }
 
+  const [rows, setRow] = useState([
+    {
+      username: "John",
+      usertype: "Admin",
+      active: "online",
+      action: 0,
+    },
+    {
+      username: "Robert",
+      usertype: "Manager",
+      active: "online",
+      action: 0,
+    },
+    {
+      username: "Client",
+      usertype: "Admin",
+      active: "online",
+      action: 0,
+    },
+    {
+      username: "Ervin Howell",
+      usertype: "Manager",
+      active: "online",
+      action: 0,
+    },
+    {
+      username: "Patricia Lebsack",
+      usertype: "Admin",
+      active: "online",
+      action: 0,
+    },
+  ]);
+  const Deleterow = (e) => {
+    // console.log(value);
+    // rows.push(createData("Patricia Lebsack", "Admin", "online", 0));
+    const spanname = e.target.getAttribute("id");
+    console.log(spanname);
+    setRow(rows.filter((item) => item.username !== spanname));
+  };
+
+  const [add, setAdd] = useState({
+    username: "",
+    usertype: "",
+    active: "",
+    action: 0,
+  });
+
+  const AddUser = () => {
+    console.log(add);
+    setRow((oldArray) => [...oldArray, add]);
+    handleClose();
+  };
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setAdd({
+      ...add,
+      [name]: value,
+    });
+  };
   return (
     <div>
       <Typography
@@ -163,7 +241,10 @@ export function Users() {
               className="addicon"
               style={{ textAlign: "right", fontSize: "30px" }}
             >
-              <PersonAddIcon className={classes.PersonAddIcon} />
+              <PersonAddIcon
+                className={classes.PersonAddIcon}
+                onClick={handleOpen}
+              />
             </div>
             <TableContainer component={Paper}>
               <Table
@@ -180,25 +261,74 @@ export function Users() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows.map((row) => (
-                    <TableRow key={row.username}>
-                      <TableCell component="th" scope="row">
-                        {row.username}
-                      </TableCell>
-                      <TableCell align="right">{row.usertype}</TableCell>
-                      <TableCell align="right">{row.active}</TableCell>
-                      <TableCell align="right">
-                        <EditIcon />
-                        <DeleteIcon />
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {rows.map((row, index) => {
+                    return (
+                      <TableRow key={row.username}>
+                        <TableCell component="th" scope="row">
+                          {row.username}
+                        </TableCell>
+                        <TableCell align="right">{row.usertype}</TableCell>
+                        <TableCell align="right">{row.active}</TableCell>
+                        <TableCell align="right">
+                          <EditIcon />
+                          <img
+                            src="https://static.thenounproject.com/png/3445515-200.png"
+                            onClick={Deleterow}
+                            id={row.username}
+                            height="20px"
+                            style={{ marginLeft: "5px", cursor: "pointer" }}
+                          />
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
             </TableContainer>
           </Grid>
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            className={classes.modal}
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={open}>
+              <div className={classes.paper2}>
+                <h2 id="transition-modal-title">Add User</h2>
+                <TextField
+                  placeholder="Username"
+                  value={add.username}
+                  onChange={handleInputChange}
+                  name="username"
+                />
+                <TextField
+                  placeholder="Usertype"
+                  value={add.usertype}
+                  onChange={handleInputChange}
+                  name="usertype"
+                />
+                <TextField
+                  placeholder="Active"
+                  value={add.active}
+                  onChange={handleInputChange}
+                  name="active"
+                />
+                <Button variant="contained" color="secondary" onClick={AddUser}>
+                  Add
+                </Button>
+              </div>
+            </Fade>
+          </Modal>
         </Grid>
       </Container>
     </div>
   );
 }
+
+export default Users;
