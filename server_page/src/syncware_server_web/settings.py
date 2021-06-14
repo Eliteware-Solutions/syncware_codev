@@ -28,8 +28,23 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+AUTH_USER_MODEL = 'authen.CustomUser'
+AUTHENTICATION_BACKENDS = ['authen.views.EmailBackend']
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
+#ACCOUNT_AUTHENTICATION_METHOD = 'email'
+#ACCOUNT_EMAIL_REQUIRED=True
+#ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+#ACCOUNT_EMAIL_REQUIRED = True
+#ACCOUNT_UNIQUE_EMAIL = True
+#ACCOUNT_USERNAME_REQUIRED = False
+#ACCOUNT_AUTHENTICATION_METHOD = 'email'
+#ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+#ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+#ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/?verification=1'
+#ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/?verification=1'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,22 +53,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'authen.apps.AuthenConfig',
     # Can also include 3rd party apps 
     'rest_framework',
-
+    'channels',
+    #'rest_auth',
+    #'rest_framework.authtoken',
+    #'allauth',
+    #'allauth.account',
+    #'rest_auth.registration',
+    'corsheaders',
     # Own apps!
     'controls',
     'device',
     'page',
     'accounts',
     # 'frontend.apps.FrontendConfig',
-    'frontend_b.apps.FrontendBConfig',
+    #'frontend_b.apps.FrontendBConfig',
     
     'sw_bridge.apps.SwBridgeConfig'
 ]
 
 MIDDLEWARE = [
+    #'authen.middleware.DisableCSRF',  # custom middleware for API
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -68,7 +91,7 @@ ROOT_URLCONF = 'syncware_server_web.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,16 +104,24 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'syncware_server_web.wsgi.application'
-
-
+#WSGI_APPLICATION = 'syncware_server_web.wsgi.application'
+ASGI_APPLICATION = "syncware_server_web.asgi.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'syncware',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
@@ -133,4 +164,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.joi'rest_framework',n(BASE_DIR,  'static')
-STATICFILES_DIRS = os.path.join(BASE_DIR, "static"),
+#STATICFILES_DIRS = os.path.join(BASE_DIR, "frontend_b/static"),
